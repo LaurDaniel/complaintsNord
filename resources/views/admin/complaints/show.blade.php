@@ -25,10 +25,26 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.complaint.fields.numar_intrare') }}
+                        </th>
+                        <td>
+                            {{ $complaint->numar_intrare }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.complaint.fields.data_intrare') }}
                         </th>
                         <td>
                             {{ $complaint->data_intrare }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.complaint.fields.modul_preluare') }}
+                        </th>
+                        <td>
+                            {{ App\Models\Complaint::MODUL_PRELUARE_SELECT[$complaint->modul_preluare] ?? '' }}
                         </td>
                     </tr>
                     <tr>
@@ -49,6 +65,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.complaint.fields.tip_client') }}
+                        </th>
+                        <td>
+                            {{ App\Models\Complaint::TIP_CLIENT_SELECT[$complaint->tip_client] ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.complaint.fields.tip_document') }}
                         </th>
                         <td>
@@ -61,6 +85,22 @@
                         </th>
                         <td>
                             {{ $complaint->continut }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.complaint.fields.concluzia_analizarii') }}
+                        </th>
+                        <td>
+                            {{ App\Models\Complaint::CONCLUZIA_ANALIZARII_SELECT[$complaint->concluzia_analizarii] ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.complaint.fields.masuri') }}
+                        </th>
+                        <td>
+                            {{ $complaint->masuri }}
                         </td>
                     </tr>
                     <tr>
@@ -93,14 +133,6 @@
                         </th>
                         <td>
                             {{ $complaint->raspuns }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.complaint.fields.numar_intrare') }}
-                        </th>
-                        <td>
-                            {{ $complaint->numar_intrare }}
                         </td>
                     </tr>
                 </tbody>

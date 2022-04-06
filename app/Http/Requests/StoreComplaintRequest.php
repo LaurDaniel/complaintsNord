@@ -17,9 +17,16 @@ class StoreComplaintRequest extends FormRequest
     public function rules()
     {
         return [
+            'numar_intrare' => [
+                'string',
+                'required',
+            ],
             'data_intrare' => [
                 'required',
                 'date_format:' . config('panel.date_format'),
+            ],
+            'modul_preluare' => [
+                'required',
             ],
             'localitate' => [
                 'string',
@@ -29,11 +36,21 @@ class StoreComplaintRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'tip_client' => [
+                'required',
+            ],
             'tip_document' => [
                 'string',
                 'required',
             ],
             'continut' => [
+                'string',
+                'required',
+            ],
+            'concluzia_analizarii' => [
+                'required',
+            ],
+            'masuri' => [
                 'string',
                 'required',
             ],
@@ -52,10 +69,6 @@ class StoreComplaintRequest extends FormRequest
             'raspuns' => [
                 'string',
                 'nullable',
-            ],
-            'numar_intrare' => [
-                'string',
-                'required',
             ],
         ];
     }

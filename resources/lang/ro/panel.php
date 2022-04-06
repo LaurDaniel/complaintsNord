@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'complaints',
+    'site_title' => 'Plangeri',
 ];
