@@ -11,12 +11,33 @@
             @method('PUT')
             @csrf
             <div class="form-group">
+                <label class="required" for="numar_intrare">{{ trans('cruds.complaint.fields.numar_intrare') }}</label>
+                <input class="form-control {{ $errors->has('numar_intrare') ? 'is-invalid' : '' }}" type="text" name="numar_intrare" id="numar_intrare" value="{{ old('numar_intrare', $complaint->numar_intrare) }}" required>
+                @if($errors->has('numar_intrare'))
+                    <span class="text-danger">{{ $errors->first('numar_intrare') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.complaint.fields.numar_intrare_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label class="required" for="data_intrare">{{ trans('cruds.complaint.fields.data_intrare') }}</label>
                 <input class="form-control date {{ $errors->has('data_intrare') ? 'is-invalid' : '' }}" type="text" name="data_intrare" id="data_intrare" value="{{ old('data_intrare', $complaint->data_intrare) }}" required>
                 @if($errors->has('data_intrare'))
                     <span class="text-danger">{{ $errors->first('data_intrare') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.complaint.fields.data_intrare_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required">{{ trans('cruds.complaint.fields.modul_preluare') }}</label>
+                <select class="form-control {{ $errors->has('modul_preluare') ? 'is-invalid' : '' }}" name="modul_preluare" id="modul_preluare" required>
+                    <option value disabled {{ old('modul_preluare', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(App\Models\Complaint::MODUL_PRELUARE_SELECT as $key => $label)
+                        <option value="{{ $key }}" {{ old('modul_preluare', $complaint->modul_preluare) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('modul_preluare'))
+                    <span class="text-danger">{{ $errors->first('modul_preluare') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.complaint.fields.modul_preluare_helper') }}</span>
             </div>
             <div class="form-group">
                 <label class="required" for="localitate">{{ trans('cruds.complaint.fields.localitate') }}</label>
@@ -35,6 +56,19 @@
                 <span class="help-block">{{ trans('cruds.complaint.fields.reclamant_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required">{{ trans('cruds.complaint.fields.tip_client') }}</label>
+                <select class="form-control {{ $errors->has('tip_client') ? 'is-invalid' : '' }}" name="tip_client" id="tip_client" required>
+                    <option value disabled {{ old('tip_client', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(App\Models\Complaint::TIP_CLIENT_SELECT as $key => $label)
+                        <option value="{{ $key }}" {{ old('tip_client', $complaint->tip_client) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('tip_client'))
+                    <span class="text-danger">{{ $errors->first('tip_client') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.complaint.fields.tip_client_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label class="required" for="tip_document">{{ trans('cruds.complaint.fields.tip_document') }}</label>
                 <input class="form-control {{ $errors->has('tip_document') ? 'is-invalid' : '' }}" type="text" name="tip_document" id="tip_document" value="{{ old('tip_document', $complaint->tip_document) }}" required>
                 @if($errors->has('tip_document'))
@@ -49,6 +83,27 @@
                     <span class="text-danger">{{ $errors->first('continut') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.complaint.fields.continut_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required">{{ trans('cruds.complaint.fields.concluzia_analizarii') }}</label>
+                <select class="form-control {{ $errors->has('concluzia_analizarii') ? 'is-invalid' : '' }}" name="concluzia_analizarii" id="concluzia_analizarii" required>
+                    <option value disabled {{ old('concluzia_analizarii', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(App\Models\Complaint::CONCLUZIA_ANALIZARII_SELECT as $key => $label)
+                        <option value="{{ $key }}" {{ old('concluzia_analizarii', $complaint->concluzia_analizarii) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('concluzia_analizarii'))
+                    <span class="text-danger">{{ $errors->first('concluzia_analizarii') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.complaint.fields.concluzia_analizarii_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="masuri">{{ trans('cruds.complaint.fields.masuri') }}</label>
+                <input class="form-control {{ $errors->has('masuri') ? 'is-invalid' : '' }}" type="text" name="masuri" id="masuri" value="{{ old('masuri', $complaint->masuri) }}" required>
+                @if($errors->has('masuri'))
+                    <span class="text-danger">{{ $errors->first('masuri') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.complaint.fields.masuri_helper') }}</span>
             </div>
             <div class="form-group">
                 <label class="required" for="termen">{{ trans('cruds.complaint.fields.termen') }}</label>
@@ -81,14 +136,6 @@
                     <span class="text-danger">{{ $errors->first('raspuns') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.complaint.fields.raspuns_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label class="required" for="numar_intrare">{{ trans('cruds.complaint.fields.numar_intrare') }}</label>
-                <input class="form-control {{ $errors->has('numar_intrare') ? 'is-invalid' : '' }}" type="text" name="numar_intrare" id="numar_intrare" value="{{ old('numar_intrare', $complaint->numar_intrare) }}" required>
-                @if($errors->has('numar_intrare'))
-                    <span class="text-danger">{{ $errors->first('numar_intrare') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.complaint.fields.numar_intrare_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
