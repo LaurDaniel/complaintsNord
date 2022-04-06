@@ -13,6 +13,25 @@ class Complaint extends Model
     use SoftDeletes;
     use HasFactory;
 
+    public const TIP_CLIENT_SELECT = [
+        'Casnic'     => 'Casnic',
+        'Non-casnic' => 'Non-casnic',
+    ];
+
+    public const CONCLUZIA_ANALIZARII_SELECT = [
+        'Intemeiata'    => 'Intemeiata',
+        'Neintemeiata'  => 'Neintemeiata',
+        'Nesolutionata' => 'Nesolutionata',
+    ];
+
+    public const MODUL_PRELUARE_SELECT = [
+        'E-mail'          => 'E-mail',
+        'Telefon'         => 'Telefon',
+        'Formular Online' => 'Formular Online',
+        'Posta'           => 'Posta',
+        'Fax'             => 'Fax',
+    ];
+
     public $table = 'complaints';
 
     protected $dates = [
@@ -24,16 +43,20 @@ class Complaint extends Model
     ];
 
     protected $fillable = [
+        'numar_intrare',
         'data_intrare',
+        'modul_preluare',
         'localitate',
         'reclamant',
+        'tip_client',
         'tip_document',
         'continut',
+        'concluzia_analizarii',
+        'masuri',
         'termen',
         'date_contact',
         'responsabil',
         'raspuns',
-        'numar_intrare',
         'created_at',
         'updated_at',
         'deleted_at',

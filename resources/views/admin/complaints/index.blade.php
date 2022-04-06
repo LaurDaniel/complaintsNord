@@ -26,7 +26,13 @@
                             {{ trans('cruds.complaint.fields.id') }}
                         </th>
                         <th>
+                            {{ trans('cruds.complaint.fields.numar_intrare') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.complaint.fields.data_intrare') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.complaint.fields.modul_preluare') }}
                         </th>
                         <th>
                             {{ trans('cruds.complaint.fields.localitate') }}
@@ -35,10 +41,19 @@
                             {{ trans('cruds.complaint.fields.reclamant') }}
                         </th>
                         <th>
+                            {{ trans('cruds.complaint.fields.tip_client') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.complaint.fields.tip_document') }}
                         </th>
                         <th>
                             {{ trans('cruds.complaint.fields.continut') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.complaint.fields.concluzia_analizarii') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.complaint.fields.masuri') }}
                         </th>
                         <th>
                             {{ trans('cruds.complaint.fields.termen') }}
@@ -53,11 +68,72 @@
                             {{ trans('cruds.complaint.fields.raspuns') }}
                         </th>
                         <th>
-                            {{ trans('cruds.complaint.fields.numar_intrare') }}
-                        </th>
-                        <th>
                             &nbsp;
                         </th>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            <select class="search" strict="true">
+                                <option value>{{ trans('global.all') }}</option>
+                                @foreach(App\Models\Complaint::MODUL_PRELUARE_SELECT as $key => $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <select class="search" strict="true">
+                                <option value>{{ trans('global.all') }}</option>
+                                @foreach(App\Models\Complaint::TIP_CLIENT_SELECT as $key => $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <select class="search" strict="true">
+                                <option value>{{ trans('global.all') }}</option>
+                                @foreach(App\Models\Complaint::CONCLUZIA_ANALIZARII_SELECT as $key => $item)
+                                    <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                        </td>
+                        <td>
+                        </td>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,7 +146,13 @@
                                 {{ $complaint->id ?? '' }}
                             </td>
                             <td>
+                                {{ $complaint->numar_intrare ?? '' }}
+                            </td>
+                            <td>
                                 {{ $complaint->data_intrare ?? '' }}
+                            </td>
+                            <td>
+                                {{ App\Models\Complaint::MODUL_PRELUARE_SELECT[$complaint->modul_preluare] ?? '' }}
                             </td>
                             <td>
                                 {{ $complaint->localitate ?? '' }}
@@ -79,10 +161,19 @@
                                 {{ $complaint->reclamant ?? '' }}
                             </td>
                             <td>
+                                {{ App\Models\Complaint::TIP_CLIENT_SELECT[$complaint->tip_client] ?? '' }}
+                            </td>
+                            <td>
                                 {{ $complaint->tip_document ?? '' }}
                             </td>
                             <td>
                                 {{ $complaint->continut ?? '' }}
+                            </td>
+                            <td>
+                                {{ App\Models\Complaint::CONCLUZIA_ANALIZARII_SELECT[$complaint->concluzia_analizarii] ?? '' }}
+                            </td>
+                            <td>
+                                {{ $complaint->masuri ?? '' }}
                             </td>
                             <td>
                                 {{ $complaint->termen ?? '' }}
@@ -95,9 +186,6 @@
                             </td>
                             <td>
                                 {{ $complaint->raspuns ?? '' }}
-                            </td>
-                            <td>
-                                {{ $complaint->numar_intrare ?? '' }}
                             </td>
                             <td>
                                 @can('complaint_show')
@@ -179,6 +267,27 @@
           .columns.adjust();
   });
   
+let visibleColumnsIndexes = null;
+$('.datatable thead').on('input', '.search', function () {
+      let strict = $(this).attr('strict') || false
+      let value = strict && this.value ? "^" + this.value + "$" : this.value
+
+      let index = $(this).parent().index()
+      if (visibleColumnsIndexes !== null) {
+        index = visibleColumnsIndexes[index]
+      }
+
+      table
+        .column(index)
+        .search(value, strict)
+        .draw()
+  });
+table.on('column-visibility.dt', function(e, settings, column, state) {
+      visibleColumnsIndexes = []
+      table.columns(":visible").every(function(colIdx) {
+          visibleColumnsIndexes.push(colIdx);
+      });
+  })
 })
 
 </script>
