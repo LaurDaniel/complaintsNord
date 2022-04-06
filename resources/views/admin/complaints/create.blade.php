@@ -82,6 +82,14 @@
                 <span class="help-block">{{ trans('cruds.complaint.fields.raspuns_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="numar_intrare">{{ trans('cruds.complaint.fields.numar_intrare') }}</label>
+                <input class="form-control {{ $errors->has('numar_intrare') ? 'is-invalid' : '' }}" type="text" name="numar_intrare" id="numar_intrare" value="{{ old('numar_intrare', '') }}" required>
+                @if($errors->has('numar_intrare'))
+                    <span class="text-danger">{{ $errors->first('numar_intrare') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.complaint.fields.numar_intrare_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

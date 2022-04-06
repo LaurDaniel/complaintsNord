@@ -33,6 +33,7 @@ class Complaint extends Model
         'date_contact',
         'responsabil',
         'raspuns',
+        'numar_intrare',
         'created_at',
         'updated_at',
         'deleted_at',

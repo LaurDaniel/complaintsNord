@@ -53,6 +53,10 @@ class StoreComplaintRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'numar_intrare' => [
+                'string',
+                'required',
+            ],
         ];
     }
 }

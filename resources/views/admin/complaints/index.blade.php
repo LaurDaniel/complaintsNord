@@ -53,6 +53,9 @@
                             {{ trans('cruds.complaint.fields.raspuns') }}
                         </th>
                         <th>
+                            {{ trans('cruds.complaint.fields.numar_intrare') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -92,6 +95,9 @@
                             </td>
                             <td>
                                 {{ $complaint->raspuns ?? '' }}
+                            </td>
+                            <td>
+                                {{ $complaint->numar_intrare ?? '' }}
                             </td>
                             <td>
                                 @can('complaint_show')

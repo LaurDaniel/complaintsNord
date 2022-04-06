@@ -19,6 +19,7 @@ class CreateComplaintsTable extends Migration
             $table->string('date_contact');
             $table->string('responsabil');
             $table->string('raspuns')->nullable();
+            $table->string('numar_intrare');
             $table->timestamps();
             $table->softDeletes();
         });

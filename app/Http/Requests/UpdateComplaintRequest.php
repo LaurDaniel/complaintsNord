@@ -53,6 +53,10 @@ class UpdateComplaintRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'numar_intrare' => [
+                'string',
+                'required',
+            ],
         ];
     }
 }

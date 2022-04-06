@@ -95,6 +95,14 @@
                             {{ $complaint->raspuns }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.complaint.fields.numar_intrare') }}
+                        </th>
+                        <td>
+                            {{ $complaint->numar_intrare }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">
