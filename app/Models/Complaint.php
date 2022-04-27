@@ -57,6 +57,7 @@ class Complaint extends Model
         'date_contact',
         'responsabil',
         'raspuns',
+        'fisier',
         'created_at',
         'updated_at',
         'deleted_at',

@@ -68,10 +68,13 @@
                             {{ trans('cruds.complaint.fields.raspuns') }}
                         </th>
                         <th>
+                            Fisier 
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
-                    <tr>
+                    <!--<tr>
                         <td>
                         </td>
                         <td>
@@ -135,6 +138,7 @@
                         <td>
                         </td>
                     </tr>
+                     -->
                 </thead>
                 <tbody>
                     @foreach($complaints as $key => $complaint)
@@ -186,6 +190,9 @@
                             </td>
                             <td>
                                 {{ $complaint->raspuns ?? '' }}
+                            </td>
+                            <td>
+                                <a href={{\Storage::url($complaint->fisier)}} target="_blank">{{ $complaint->fisier ?? '' }}</a>
                             </td>
                             <td>
                                 @can('complaint_show')

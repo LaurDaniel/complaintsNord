@@ -137,6 +137,14 @@
                 <span class="help-block">{{ trans('cruds.complaint.fields.raspuns_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="fisier"> Incarcare Fisier </label>
+                <input type="file" name="fisier" >
+                @if($errors->has('fisier'))
+                    <span class="text-danger">{{ $errors->first('fisier') }}</span>
+                @endif
+               
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>
@@ -146,5 +154,10 @@
 </div>
 
 
+
+@endsection
+
+
+@section('scripts')
 
 @endsection

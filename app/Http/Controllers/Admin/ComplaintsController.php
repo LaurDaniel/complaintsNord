@@ -10,6 +10,7 @@ use App\Models\Complaint;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Storage;
 
 class ComplaintsController extends Controller
 {
@@ -31,7 +32,36 @@ class ComplaintsController extends Controller
 
     public function store(StoreComplaintRequest $request)
     {
-        $complaint = Complaint::create($request->all());
+       $fileName = '';
+        if($request->hasFile('fisier')) {
+            // Upload path
+            
+            // Get file extension
+            $extension = $request->file('fisier')->getClientOriginalExtension();
+            // Valid extensions
+      
+              // Rename file 
+              $fileName = $request->file('fisier')->getClientOriginalName();
+              // Uploading file to given path
+              Storage::disk('public')->put($fileName, 'Contents');
+            }
+            // dd($request->all());
+        $complaint = Complaint::create(['numar_intrare'=>$request->input('numar_intrare'),
+        'data_intrare'=>$request->input('data_intrare'),
+        'modul_preluare'=>$request->input('modul_preluare'),
+        'localitate'=>$request->input('localitate'),
+        'reclamant'=>$request->input('reclamant'),
+        'tip_client'=>$request->input('tip_client'),
+        'tip_document'=>$request->input('tip_document'),
+        'continut'=>$request->input('continut'),
+        'concluzia_analizarii'=>$request->input('concluzia_analizarii'),
+        'masuri'=>$request->input('masuri'),
+        'termen'=>$request->input('termen'),
+        'date_contact'=>$request->input('date_contact'),
+        'responsabil'=>$request->input('responsabil'),
+        'raspuns'=>$request->input('raspuns'),
+        'fisier'=>$fileName,
+    ]);
 
         return redirect()->route('admin.complaints.index');
     }

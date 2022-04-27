@@ -66,8 +66,8 @@ return [
         ],
     ],
     'complaint' => [
-        'title'          => 'Reclamatii',
-        'title_singular' => 'Reclamatii',
+        'title'          => 'Plangere',
+        'title_singular' => 'Plangere',
         'fields'         => [
             'id'                          => 'ID',
             'id_helper'                   => ' ',
