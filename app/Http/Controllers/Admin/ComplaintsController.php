@@ -11,6 +11,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ComplaintsController extends Controller
 {
@@ -61,6 +62,7 @@ class ComplaintsController extends Controller
         'responsabil'=>$request->input('responsabil'),
         'raspuns'=>$request->input('raspuns'),
         'fisier'=>$fileName,
+        'user_id'=>Auth::user()->id
     ]);
 
         return redirect()->route('admin.complaints.index');

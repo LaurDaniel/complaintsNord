@@ -45,12 +45,25 @@ return [
             'auth_mode' => null,
         ],
 
+        'mailers' => [
+            'failover' => [
+                'transport' => 'failover',
+                'mailers' => [
+                    'postmark',
+                    'mailgun',
+                    'sendmail',
+                ],
+            ],
+         
+        ],
+
         'ses' => [
             'transport' => 'ses',
         ],
 
         'mailgun' => [
-            'transport' => 'mailgun',
+            'domain' => env('MAILGUN_DOMAIN'),
+            'secret' => env('MAILGUN_SECRET'),
         ],
 
         'postmark' => [
@@ -107,4 +120,11 @@ return [
         ],
     ],
 
+
+    
+    'default' => env('MAIL_MAILER', 'failover'),
+
+
+
 ];
+

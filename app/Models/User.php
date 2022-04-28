@@ -17,6 +17,8 @@ class User extends Authenticatable
     use SoftDeletes;
     use Notifiable;
     use HasFactory;
+    use Notifiable;
+
 
     public $table = 'users';
 
@@ -79,4 +81,6 @@ class User extends Authenticatable
     {
         return $date->format('Y-m-d H:i:s');
     }
+    use Notifiable;
+
 }

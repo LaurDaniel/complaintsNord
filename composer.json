@@ -16,8 +16,10 @@
         "laravel/dusk": "^6.11",
         "laravel/framework": "^8.70.1",
         "laravel/tinker": "^2.5",
-        "yajra/laravel-datatables-oracle": "^9.18",
-        "laravel/ui": "^3.3"
+        "laravel/ui": "^3.3",
+        "symfony/http-client": "^5.4",
+        "symfony/mailgun-mailer": "^5.4",
+        "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
